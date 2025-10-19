@@ -1,14 +1,10 @@
-// libc_mini/include/unistd.h
+// libc_mini/include/constants.h
 
 #ifndef _UNISTD_H
 #define _UNISTD_H
 
-#include <stddef.h>
-#include <sys/types.h> // ssize_t type
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+typedef unsigned long size_t; // Adjust for your architecture!
+typedef long ssize_t;
 
 ssize_t write(int fd, const void *buf, size_t count);
 ssize_t read(int fd, void *buf, size_t count);
@@ -29,9 +25,5 @@ int open(const char *path, int oflag, int mode);
 #define S_IROTH 0004 // others read
 #define S_IWOTH 0002 // others write
 #define S_IXOTH 0001 // others execute
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif // _UNISTD_H
