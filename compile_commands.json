@@ -1,0 +1,106 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "build/test",
+      "src/stdio/open.c"
+    ],
+    "directory": "/home/beyza/obsidian/vscode/coreproject/libc_mini",
+    "file": "/home/beyza/obsidian/vscode/coreproject/libc_mini/src/stdio/open.c",
+    "output": "/home/beyza/obsidian/vscode/coreproject/libc_mini/build/test"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "build/test",
+      "src/stdio/read.c"
+    ],
+    "directory": "/home/beyza/obsidian/vscode/coreproject/libc_mini",
+    "file": "/home/beyza/obsidian/vscode/coreproject/libc_mini/src/stdio/read.c",
+    "output": "/home/beyza/obsidian/vscode/coreproject/libc_mini/build/test"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "build/test",
+      "src/stdio/write.c"
+    ],
+    "directory": "/home/beyza/obsidian/vscode/coreproject/libc_mini",
+    "file": "/home/beyza/obsidian/vscode/coreproject/libc_mini/src/stdio/write.c",
+    "output": "/home/beyza/obsidian/vscode/coreproject/libc_mini/build/test"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "build/test",
+      "tests/test.c"
+    ],
+    "directory": "/home/beyza/obsidian/vscode/coreproject/libc_mini",
+    "file": "/home/beyza/obsidian/vscode/coreproject/libc_mini/tests/test.c",
+    "output": "/home/beyza/obsidian/vscode/coreproject/libc_mini/build/test"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "build/testnew",
+      "src/stdio/open.c"
+    ],
+    "directory": "/home/beyza/obsidian/vscode/coreproject/libc_mini",
+    "file": "/home/beyza/obsidian/vscode/coreproject/libc_mini/src/stdio/open.c",
+    "output": "/home/beyza/obsidian/vscode/coreproject/libc_mini/build/testnew"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "build/testnew",
+      "src/stdio/read.c"
+    ],
+    "directory": "/home/beyza/obsidian/vscode/coreproject/libc_mini",
+    "file": "/home/beyza/obsidian/vscode/coreproject/libc_mini/src/stdio/read.c",
+    "output": "/home/beyza/obsidian/vscode/coreproject/libc_mini/build/testnew"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "build/testnew",
+      "src/stdio/write.c"
+    ],
+    "directory": "/home/beyza/obsidian/vscode/coreproject/libc_mini",
+    "file": "/home/beyza/obsidian/vscode/coreproject/libc_mini/src/stdio/write.c",
+    "output": "/home/beyza/obsidian/vscode/coreproject/libc_mini/build/testnew"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "build/testnew",
+      "tests/testnew.c"
+    ],
+    "directory": "/home/beyza/obsidian/vscode/coreproject/libc_mini",
+    "file": "/home/beyza/obsidian/vscode/coreproject/libc_mini/tests/testnew.c",
+    "output": "/home/beyza/obsidian/vscode/coreproject/libc_mini/build/testnew"
+  }
+]
