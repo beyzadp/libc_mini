@@ -1,16 +1,42 @@
 // libc_mini/include/constants.h
 
-#ifndef _UNISTD_H
-#define _UNISTD_H
+#ifndef _CONSTANTS_H
+#define _CONSTANTS_H
 
-typedef unsigned long size_t; // Adjust for your architecture!
+typedef unsigned long size_t;
 typedef long ssize_t;
+
+struct sockaddr;
+typedef unsigned int socklen_t;
+typedef int pid_t;
 
 ssize_t write(int fd, const void *buf, size_t count);
 ssize_t read(int fd, void *buf, size_t count);
 int open(const char *path, int oflag, int mode);
+int close(int fd);
+int socket(int domain, int type, int protocol);
+int accept(int socket, struct sockaddr *restrict address,
+           socklen_t *restrict address_len);
+int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+int listen(int sockfd, int backlog);
+pid_t fork(void);
+void exit(int status);
 
-// Temporary file open flags
+char *strchr(const char *s, int c);
+
+#define NULL ((void *)0);
+
+#define SYS_READ 0
+#define SYS_WRITE 1
+#define SYS_OPEN 2
+#define SYS_CLOSE 3
+#define SYS_SOCKET 41
+#define SYS_ACCEPT 43
+#define SYS_BIND 49
+#define SYS_LISTEN 50
+#define SYS_FORK 57
+#define SYS_EXIT 60
+
 #define O_RDONLY 0   // Open for reading only
 #define O_WRONLY 1   // Open for writing only
 #define O_RDWR 2     // Open for reading and writing
@@ -26,4 +52,4 @@ int open(const char *path, int oflag, int mode);
 #define S_IWOTH 0002 // others write
 #define S_IXOTH 0001 // others execute
 
-#endif // _UNISTD_H
+#endif

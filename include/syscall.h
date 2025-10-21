@@ -1,6 +1,27 @@
 #ifndef _SYSCALL_H
 #define _SYSCALL_H
 
+static inline long syscall(long number) {
+  long ret;
+  __asm__ volatile("mov %[num], %%rax\n\t"
+                   "syscall"
+                   : "=a"(ret)
+                   : [num] "r"(number)
+                   : "rcx", "r11");
+  return ret;
+}
+
+static inline long syscall1(long number, long arg1) {
+  long ret;
+  __asm__ volatile("mov %[num], %%rax\n\t"
+                   "mov %[a1], %%rdi\n\t"
+                   "syscall"
+                   : "=a"(ret)
+                   : [num] "r"(number), [a1] "r"(arg1)
+                   : "rcx", "r11", "rdi");
+  return ret;
+}
+
 static inline long syscall2(long number, long arg1, long arg2) {
   long ret;
   __asm__ volatile("mov %[num], %%rax\n\t"
