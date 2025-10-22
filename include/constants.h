@@ -31,6 +31,10 @@ int e_isdigit(int c);
 int e_isalnum(int c);
 int e_isascii(int c);
 int e_isprint(int c);
+void *e_memset(void *s, int c, size_t n);
+void *e_memcpy(void *restrict s1, const void *restrict s2, size_t n);
+void *e_memmove(void *s1, const void *s2, size_t n);
+size_t e_strlcpy(char *dst, const char *src, size_t size);
 
 #define NULL ((void *)0);
 

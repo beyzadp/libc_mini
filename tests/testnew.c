@@ -7,7 +7,7 @@ int main(void) {
   const char *teststr = "hell, world!";
   char ch = 'o';
 
-  char *result = strchr(teststr, ch);
+  char *result = e_strchr(teststr, ch);
 
   if (result) {
     // Output: "Found at position X\n"
