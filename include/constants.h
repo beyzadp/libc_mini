@@ -21,8 +21,16 @@ int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 int listen(int sockfd, int backlog);
 pid_t fork(void);
 void exit(int status);
+int setsockopt(int socket, int level, int option_name, const void *option_value,
+               socklen_t option_len);
 
-char *strchr(const char *s, int c);
+char *e_strchr(const char *s, int c);
+size_t e_strlen(const char *s);
+int e_isalpha(int c);
+int e_isdigit(int c);
+int e_isalnum(int c);
+int e_isascii(int c);
+int e_isprint(int c);
 
 #define NULL ((void *)0);
 
@@ -36,6 +44,7 @@ char *strchr(const char *s, int c);
 #define SYS_LISTEN 50
 #define SYS_FORK 57
 #define SYS_EXIT 60
+#define SYS_SETSOCKOPT 54
 
 #define O_RDONLY 0   // Open for reading only
 #define O_WRONLY 1   // Open for writing only

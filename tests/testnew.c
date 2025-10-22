@@ -3,16 +3,25 @@
 #include <constants.h>
 #include <syscall.h>
 
-#define BUF_SIZE 128
-
 int main(void) {
-  int fd = 0;
-  char buf[BUF_SIZE];
-  int n = read(fd, buf,
-               BUF_SIZE - 1); // sizeof(msg)-1 to exclude the null terminator
+  const char *teststr = "hell, world!";
+  char ch = 'o';
 
-  open(buf, O_RDONLY, 0);
-  write(1, buf, n); // write to stdout (fd 1)
-  close(fd);
+  char *result = strchr(teststr, ch);
+
+  if (result) {
+    // Output: "Found at position X\n"
+    char msg[] = "Found at position ";
+    write(1, msg, sizeof(msg) - 1);
+    // Calculate position
+    int pos = result - teststr;
+    char num =
+        '0' + pos; // Only works for single digit (0-9); for more, expand.
+    write(1, &num, 1);
+    write(1, "\n", 1);
+  } else {
+    char notfound[] = "Character not found\n";
+    write(1, notfound, sizeof(notfound) - 1);
+  }
   return 0;
 }
