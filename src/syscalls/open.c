@@ -1,4 +1,5 @@
 #include <constants.h>
+#include <e_lib.h>
 #include <syscall.h>
 
 //       int openat(int fd, const char *path, int oflag, ...);

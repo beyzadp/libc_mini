@@ -1,4 +1,5 @@
 #include <constants.h>
+#include <e_lib.h>
 
 // int isalnum(int c);
 

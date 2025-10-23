@@ -1,4 +1,6 @@
 #include <constants.h>
+#include <e_lib.h>
+
 //  The isascii() function shall test whether c is a 7-bit US-ASCII character
 //  code.
 

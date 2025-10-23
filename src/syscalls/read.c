@@ -1,4 +1,5 @@
 #include <constants.h>
+#include <e_lib.h>
 #include <syscall.h>
 
 // ssize_t read(size_t count;

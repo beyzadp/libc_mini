@@ -1,4 +1,5 @@
 #include <constants.h>
+#include <e_lib.h>
 #include <syscall.h>
 
 //      int accept(int socket, struct sockaddr *restrict address,

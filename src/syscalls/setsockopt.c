@@ -1,4 +1,5 @@
 #include <constants.h>
+#include <e_lib.h>
 #include <syscall.h>
 
 // int setsockopt(int socket, int level, int option_name,

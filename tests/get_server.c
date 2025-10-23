@@ -1,4 +1,5 @@
 #include <constants.h>
+#include <e_lib.h>
 #include <mini_netinet_in.h>
 #include <syscall.h>
 #define BUFFER_SIZE 4096

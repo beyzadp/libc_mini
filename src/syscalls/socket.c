@@ -1,5 +1,6 @@
 
 #include <constants.h>
+#include <e_lib.h>
 #include <syscall.h>
 
 // int socket(int domain, int type, int protocol);

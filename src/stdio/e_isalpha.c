@@ -1,3 +1,6 @@
+#include <constants.h>
+#include <e_lib.h>
+
 // int isalpha(int c);
 
 /*
@@ -22,7 +25,7 @@ return 0.
 
     */
 
-int isalpha(int c) {
+int e_isalpha(int c) {
   if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) {
     return 1; // non-zero
   }

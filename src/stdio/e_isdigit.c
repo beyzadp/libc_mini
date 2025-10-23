@@ -1,3 +1,6 @@
+#include <constants.h>
+#include <e_lib.h>
+
 // int isdigit(int c);
 
 // functions shall test whether c is a character of class digit in the current

@@ -1,4 +1,5 @@
 #include <constants.h>
+#include <e_lib.h>
 #include <syscall.h>
 
 // char *strchr(const char *s, int c);
@@ -9,7 +10,7 @@
 //     Upon completion, strchr() shall return a pointer to the byte, or a null
 //     pointer if the byte was not found.
 
-char *strchr(const char *s, int c) {
+char *e_strchr(const char *s, int c) {
   char ch = (char)c;
   while (*s) {
     if (*s == ch) {

@@ -1,4 +1,6 @@
 #include <constants.h>
+#include <e_lib.h>
+
 // void *memcpy(void *restrict s1, const void *restrict s2, size_t n);
 //    The memcpy() function shall copy n bytes from the object pointed to by s2
 //    into the object pointed to by s1. If copying takes place between objects

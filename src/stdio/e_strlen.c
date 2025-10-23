@@ -1,4 +1,5 @@
 #include <constants.h>
+#include <e_lib.h>
 #include <syscall.h>
 
 // The strlen() function shall compute the number of bytes in the string to
@@ -9,7 +10,7 @@
 // The strlen() function shall return the length of s; no return value shall be
 // reserved to indicate an error.
 
-size_t strlen(const char *s) {
+size_t e_strlen(const char *s) {
   size_t length = 0;
   while (s[length] != '\0') {
     length++;
