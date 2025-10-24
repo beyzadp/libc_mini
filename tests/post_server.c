@@ -34,6 +34,7 @@ int main(void) {
   // to see what the req is:
   write(1, buffer, bytes_read);
   write(1, new_line, e_strlen(new_line));
+  write(1, new_line, e_strlen(new_line));
 
   // parsing the filename
 
@@ -46,6 +47,9 @@ int main(void) {
   size_t path_length = path_end - path_start;
   // writing the filename for debug
   path_start += 1;
+  write(1, "file to write:", 15);
+  write(1, new_line, e_strlen(new_line));
+
   write(1, path_start, path_length);
   write(1, new_line, e_strlen(new_line));
 
@@ -73,12 +77,7 @@ int main(void) {
   int len_content = 0;
   const char *pos = NULL;
   pos = e_strestr(buffer, content_length, 4096);
-  write(1, "=======", 7);
-  write(1, buffer, e_strlen(buffer));
-  write(1, "=======", 7);
-  if (pos == NULL) {
-    write(1, "strstrs", 7);
-  }
+
   if (pos) {
     pos += e_strlen(content_length);
     // Skip whitespace
@@ -96,15 +95,15 @@ int main(void) {
                         S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 
   const char *post_content = e_strestr(buffer, "\r\n\r\n", 4096);
-  if (post_content == NULL) {
-    write(1, "HELL22O", 7);
-  }
 
   if (post_content) {
     post_content += 4; // Skip exactly past the separator
 
-    write(1, post_content, 30);                   // debug print to stdout
     write(postfilefd, post_content, len_content); // write POST body to file
+    write(1, "Req Successful\n", 16);
+
+    write(client_fd, http_200, e_strlen(http_200));
+
   } else {
     write(1, "Could not find POST body\n", 25);
   } // add new lines

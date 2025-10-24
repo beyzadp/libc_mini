@@ -2,40 +2,47 @@
 
 #include <constants.h>
 #include <e_lib.h>
+#include <mini_netinet_in.h>
+#include <string.h>
 #include <syscall.h>
+
+#define BUFFER_SIZE 4096
 
 int main(void) {
   const char *http_200 = "HTTP/1.0 200 OK\r\n\r\n";
   const char *http_404 = "HTTP/1.0 404 Not Found\r\n\r\n";
   const char *new_line = "\n";
   const char *content_length = "Content-Length: ";
-  char *buffer =
-      "POST /post_test HTTP/1.1\r\nHost: localhost:1234\r\nUser-Agent: "
-      "curl/8.16.0\r\nAccept: */*\r\nContent-Length: 7\r\nContent-Type: "
-      "application/x-www-form-urlencoded\r\n\r\nhelowerewrw";
-  char *test = "helloworld";
 
-  int len_content = 0;
-  const char *pos = NULL;
-  pos = e_strstr(buffer, content_length);
-  if (pos) {
-    pos += e_strlen(content_length);
-    // Skip whitespace
-    while (*pos == ' ' || *pos == '\t')
-      pos++;
-    // Parse digits
-    while (*pos >= '0' && *pos <= '9')
-      len_content = len_content * 10 + (*pos++ - '0');
+  struct sockaddr_in server;
+  int sockfd = socket(AF_INET, 1, 0); // AF_INET, SOCK_STREAM, protocol
+  server.sin_addr.s_addr = 0;         // any address (0.0.0.0)
+  server.sin_port = 0xD204;           // port 4444, since i dont have any htons
+  server.sin_family = AF_INET;        // address family (ip v4)
+
+  // prevent blocking by time_wait
+
+  int optval = 1;
+  setsockopt(sockfd, 1 /*SOL_SOCKET*/, 2 /*SO_REUSEADDR*/, &optval,
+             sizeof(optval));
+
+  int res = bind(sockfd, (struct sockaddr *)&server, sizeof(server));
+  listen(sockfd, 1);
+  int client_fd = accept(sockfd, 0, 0); // accept
+  char buffer[BUFFER_SIZE];
+
+  ssize_t bytes_read = read(client_fd, buffer, sizeof(buffer) - 1);
+
+  // the get req is in the buffer
+
+  // to see what the req is:
+  write(1, buffer, bytes_read);
+  write(1, new_line, e_strlen(new_line));
+  write(1, new_line, e_strlen(new_line));
+
+  if (e_strstr(buffer, "POST")) {
+    write(1, "this is a post req", 19);
+  } else if (e_strstr(buffer, "GET")) {
+    write(1, "this is a GET req", 19);
   }
-
-  // now len_content has the length of the content
-  // i double checked this. its working.
-
-  const char *post_content = e_strstr(buffer, "helo");
-  if (post_content) {
-    post_content += 4;                   // Skip exactly past the separator
-    write(1, post_content, len_content); // debug print to stdout
-  } else {
-    write(1, "Could not find POST body\n", 25);
-  } // add new lines
 }
