@@ -65,6 +65,8 @@ int main(void) {
 
     if (pid == 0) {
 
+      close(sockfd);
+
       ssize_t bytes_read = read(client_fd, buffer, sizeof(buffer) - 1);
 
       // the get req is in the buffer
@@ -139,6 +141,8 @@ int main(void) {
 
           write(postfilefd, post_content,
                 len_content); // write POST body to file
+
+          close(postfilefd);
           write(1, "Req Successful\n\n", 16);
           write(1, "----------\n", 12);
 

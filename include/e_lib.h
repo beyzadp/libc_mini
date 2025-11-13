@@ -8,6 +8,12 @@ struct sockaddr;
 typedef unsigned int socklen_t;
 typedef int pid_t;
 
+// for variadic functions
+typedef __builtin_va_list va_list;
+#define va_start __builtin_va_start
+#define va_end __builtin_va_end
+#define va_arg __builtin_va_arg
+
 ssize_t write(int fd, const void *buf, size_t count);
 ssize_t read(int fd, void *buf, size_t count);
 int open(const char *path, int oflag, int mode);
@@ -36,5 +42,9 @@ size_t e_strlcpy(char *dst, const char *src, size_t size);
 char *e_strstr(const char *haystack, const char *needle);
 char *ft_strnstr(const char *haystack, const char *needle, size_t len);
 char *e_strestr(const char *haystack, const char *needle, size_t length);
+int e_atoi(const char *nptr);
+char *e_itoa(int n);
+
+int e_printf(const char *format, ...);
 
 #endif

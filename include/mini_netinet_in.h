@@ -1,7 +1,6 @@
 #ifndef MINI_NETINET_IN_H
 #define MINI_NETINET_IN_H
 
-// Use basic C types (no stdint.h, no stdlib.h, etc.)
 typedef unsigned short sa_family_t;
 typedef unsigned short in_port_t;
 typedef unsigned int in_addr_t;
@@ -23,4 +22,4 @@ struct sockaddr_in {
 #define AF_INET 2                          // IPv4 protocol
 #define INADDR_ANY ((in_addr_t)0x00000000) // Bind to all available interfaces
 
-#endif // MINI_NETINET_IN_H
+#endif
