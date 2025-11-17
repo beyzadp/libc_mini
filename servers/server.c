@@ -131,7 +131,7 @@ int main(void) {
         // now len_content has the length of the content
         // i double checked this. its working.
 
-        int postfilefd = open(path_start, O_WRONLY | O_CREAT,
+        int postfilefd = open(path_start, O_WRONLY | O_CREAT | O_TRUNC,
                               S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 
         const char *post_content = e_strestr(buffer, "\r\n\r\n", 4096);

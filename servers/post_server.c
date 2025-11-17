@@ -13,7 +13,7 @@ int main(void) {
   struct sockaddr_in server;
   int sockfd = socket(AF_INET, 1, 0); // AF_INET, SOCK_STREAM, protocol
   server.sin_addr.s_addr = 0;         // any address (0.0.0.0)
-  server.sin_port = 0xD204;           // port 4444, since i dont have any htons
+  server.sin_port = 0xD204;           // port 1234, since i dont have any htons
   server.sin_family = AF_INET;        // address family (ip v4)
 
   // prevent blocking by time_wait
@@ -91,7 +91,7 @@ int main(void) {
   // now len_content has the length of the content
   // i double checked this. its working.
 
-  int postfilefd = open(path_start, O_WRONLY | O_CREAT,
+  int postfilefd = open(path_start, O_WRONLY | O_CREAT | O_TRUNC,
                         S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 
   const char *post_content = e_strestr(buffer, "\r\n\r\n", 4096);

@@ -40,10 +40,19 @@ void *e_memcpy(void *restrict s1, const void *restrict s2, size_t n);
 void *e_memmove(void *s1, const void *s2, size_t n);
 size_t e_strlcpy(char *dst, const char *src, size_t size);
 char *e_strstr(const char *haystack, const char *needle);
-char *ft_strnstr(const char *haystack, const char *needle, size_t len);
-char *e_strestr(const char *haystack, const char *needle, size_t length);
+int e_strncmp(const char *s1, const char *s2, size_t n);
+int e_strlcat(char *dst, const char *src, size_t dstsize);
+char *e_strrchr(const char *s, int c);
+char *e_strdup(const char *s1);
 int e_atoi(const char *nptr);
 char *e_itoa(int n);
+
+/**
+ * e_strestr - Like strstr, but searches only within the first 'length' bytes of
+ * 'haystack'. Returns pointer to first match, or NULL if not found within
+ * length.
+ */
+char *e_strestr(const char *haystack, const char *needle, size_t length);
 
 int e_printf(const char *format, ...);
 
