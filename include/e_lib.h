@@ -4,6 +4,8 @@
 typedef unsigned long size_t;
 typedef long ssize_t;
 
+typedef long int intptr_t;
+
 struct sockaddr;
 typedef unsigned int socklen_t;
 typedef int pid_t;
@@ -27,6 +29,7 @@ pid_t fork(void);
 void exit(int status);
 int setsockopt(int socket, int level, int option_name, const void *option_value,
                socklen_t option_len);
+void *sbrk(intptr_t increment);
 
 char *e_strchr(const char *s, int c);
 size_t e_strlen(const char *s);
@@ -46,6 +49,8 @@ char *e_strrchr(const char *s, int c);
 char *e_strdup(const char *s1);
 int e_atoi(const char *nptr);
 char *e_itoa(int n);
+int e_tolower(int c);
+int e_toupper(int c);
 
 /**
  * e_strestr - Like strstr, but searches only within the first 'length' bytes of
@@ -56,4 +61,6 @@ char *e_strestr(const char *haystack, const char *needle, size_t length);
 
 int e_printf(const char *format, ...);
 
+void *e_malloc(size_t size);
+void e_free(void *ptr);
 #endif
