@@ -51,6 +51,7 @@ int e_atoi(const char *nptr);
 char *e_itoa(int n);
 int e_tolower(int c);
 int e_toupper(int c);
+char *e_strtok(char *str, const char *delim);
 
 /**
  * e_strestr - Like strstr, but searches only within the first 'length' bytes of

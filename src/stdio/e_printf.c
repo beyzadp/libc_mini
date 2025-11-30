@@ -53,7 +53,25 @@ int e_printf(const char *format, ...) {
           const int nibble = (value >> (i * 4)) & 0xf;
           write(1, &"0123456789abcdef"[nibble], 1);
         }
-      } else {
+      } else if (*format == 'p') {
+        void *ptr = va_arg(ap, void *);
+        unsigned long val = (unsigned long)ptr;
+
+        write(1, "0x", 2);
+
+        // Print each hex digit by shifting and masking
+        int started = 0;
+        for (int i = (sizeof(unsigned long) * 2) - 1; i >= 0; i--) {
+          char digit = (val >> (i * 4)) & 0xf;
+          if (digit || started || i == 0) {
+            char c = "0123456789abcdef"[digit];
+            write(1, &c, 1);
+            started = 1;
+          }
+        }
+      }
+
+      else {
         char symbol = '%';
         write(1, &symbol, 1);
         return_len += 1;
