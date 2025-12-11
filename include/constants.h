@@ -17,6 +17,7 @@
 #define SYS_FORK 57
 #define SYS_EXIT 60
 #define SYS_SETSOCKOPT 54
+#define SYS_NANOSLEEP 35
 
 #define O_RDONLY 0
 #define O_WRONLY 1

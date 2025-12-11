@@ -43,6 +43,7 @@ void *e_memcpy(void *restrict s1, const void *restrict s2, size_t n);
 void *e_memmove(void *s1, const void *s2, size_t n);
 size_t e_strlcpy(char *dst, const char *src, size_t size);
 char *e_strstr(const char *haystack, const char *needle);
+int e_strcmp(const char *s1, const char *s2);
 int e_strncmp(const char *s1, const char *s2, size_t n);
 int e_strlcat(char *dst, const char *src, size_t dstsize);
 char *e_strrchr(const char *s, int c);
@@ -52,6 +53,9 @@ char *e_itoa(int n);
 int e_tolower(int c);
 int e_toupper(int c);
 char *e_strtok(char *str, const char *delim);
+void e_sleep(unsigned int seconds);
+unsigned int e_random(void);
+void e_srand(unsigned int seed);
 
 /**
  * e_strestr - Like strstr, but searches only within the first 'length' bytes of

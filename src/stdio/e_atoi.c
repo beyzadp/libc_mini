@@ -6,33 +6,33 @@
 // The atoi() function converts the initial portion of the string
 // pointed to by nptr to int.
 
+// e_atoi: convert ASCII string to int (minimal, no error checking, skips
+// whitespace)
 int e_atoi(const char *nptr) {
-  unsigned long ret = 0;
-  unsigned long n = 1;
+  int ret = 0;
   int neg = 0;
 
-  // if its negative
-  if (*nptr == '-') {
-    neg = 1;
+  // skip whitespace
+  while (*nptr == ' ' || *nptr == '\t' || *nptr == '\n') {
     nptr++;
   }
 
-  while (*nptr) {
-    ret += *nptr - '0';
-    ret *= n;
-    n *= 10;
+  // handle sign
+  if (*nptr == '-') {
+    neg = 1;
+    nptr++;
+  } else if (*nptr == '+') {
+    nptr++;
+  }
+
+  // process digits
+  while (*nptr >= '0' && *nptr <= '9') {
+    ret = ret * 10 + (*nptr - '0');
     nptr++;
   }
 
   if (neg) {
-    ret *= -1;
+    ret = -ret;
   }
-
   return ret;
-  // while not:
-  // substract '0'
-  // multiply 10 = ret
-
-  // if negative
-  //-
 }
