@@ -56,6 +56,7 @@ char *e_strtok(char *str, const char *delim);
 void e_sleep(unsigned int seconds);
 unsigned int e_random(void);
 void e_srand(unsigned int seed);
+char *e_ulltoa(unsigned long long value);
 
 /**
  * e_strestr - Like strstr, but searches only within the first 'length' bytes of
@@ -65,6 +66,7 @@ void e_srand(unsigned int seed);
 char *e_strestr(const char *haystack, const char *needle, size_t length);
 
 int e_printf(const char *format, ...);
+int e_fprintf(int fd, const char *format, ...);
 
 void *e_malloc(size_t size);
 void e_free(void *ptr);
