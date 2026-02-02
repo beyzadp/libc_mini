@@ -21,23 +21,23 @@
 // Result: 123123459
 
 void *e_memmove(void *s1, const void *s2, size_t n) {
-  char *dest = (char *)s1;
-  const char *src =
-      (char *)s2; // added const for not accidentally change source.
+    char *dest = (char *)s1;
+    const char *src =
+        (char *)s2; // added const for not accidentally change source.
 
-  if (dest < src) {
-    while (n) {
-      *dest++ = *src++;
-      n--;
+    if (dest < src) {
+        while (n) {
+            *dest++ = *src++;
+            n--;
+        }
+    } else if (dest > src) {
+        // Overlap: copy backward to avoid early overwrite
+        dest += n;
+        src += n;
+        while (n--) {
+            *(--dest) = *(--src);
+        }
     }
-  } else if (dest > src) {
-    // Overlap: copy backward to avoid early overwrite
-    dest += n;
-    src += n;
-    while (n--) {
-      *(--dest) = *(--src);
-    }
-  }
 
-  return s1;
+    return s1;
 }

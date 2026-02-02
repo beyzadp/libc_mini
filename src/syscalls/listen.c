@@ -5,5 +5,5 @@
 // int listen(int socket, int backlog);
 
 int listen(int sockfd, int backlog) {
-  return (int)syscall2(SYS_LISTEN, sockfd, backlog);
+    return (int)syscall2(SYS_LISTEN, sockfd, backlog);
 }

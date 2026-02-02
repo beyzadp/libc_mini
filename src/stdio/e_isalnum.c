@@ -20,8 +20,8 @@
 //   otherwise, they shall return 0.
 
 int e_isalnum(int c) {
-  if (!e_isalpha(c) && !e_isdigit(c)) {
-    return 0;
-  }
-  return 1;
+    if (!e_isalpha(c) && !e_isdigit(c)) {
+        return 0;
+    }
+    return 1;
 }

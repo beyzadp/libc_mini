@@ -11,9 +11,9 @@
 // reserved to indicate an error.
 
 size_t e_strlen(const char *s) {
-  size_t length = 0;
-  while (s[length] != '\0') {
-    length++;
-  }
-  return length;
+    size_t length = 0;
+    while (s[length] != '\0') {
+        length++;
+    }
+    return length;
 }

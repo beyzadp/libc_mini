@@ -13,24 +13,24 @@ action shall occur.
 */
 
 typedef struct Block {
-  size_t size;
-  int is_free; // 1 if the block is free, 0 if it is allocated
-  struct Block
-      *next; // Pointer to the next block in the free list (NULL if end)
+    size_t size;
+    int is_free; // 1 if the block is free, 0 if it is allocated
+    struct Block
+        *next; // Pointer to the next block in the free list (NULL if end)
 } __attribute__((aligned(8))) Block;
 
 void e_free(void *ptr) {
 
-  if (!ptr)
-    return;
+    if (!ptr)
+        return;
 
-  // Block header is located just before the user pointer
-  Block *header = (Block *)ptr - 1;
-  header->is_free = 1; // Mark as free
+    // Block header is located just before the user pointer
+    Block *header = (Block *)ptr - 1;
+    header->is_free = 1; // Mark as free
 
-  // Optional: Insert logic to coalesce adjacent free blocks here, if needed
-  // (not implemented in this minimal version)
+    // Optional: Insert logic to coalesce adjacent free blocks here, if needed
+    // (not implemented in this minimal version)
 
-  // No need to modify free_list, as it's already maintained via Block->next.
-  // This is a simple free.
+    // No need to modify free_list, as it's already maintained via Block->next.
+    // This is a simple free.
 }

@@ -18,11 +18,11 @@
 // new *s = kkkdef
 
 void *e_memset(void *s, int c, size_t n) {
-  char *temp = (char *)s;
-  while (n != 0) {
-    *temp = (char)c;
-    temp++;
-    n--;
-  }
-  return s;
+    char *temp = (char *)s;
+    while (n != 0) {
+        *temp = (char)c;
+        temp++;
+        n--;
+    }
+    return s;
 }

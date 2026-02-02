@@ -60,123 +60,123 @@
 #define CLRLINE "\r\e[K" // or "\e[1K\r"
 
 #define __FILENAME__                                                           \
-  (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+    (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 /* safe readable version of errno */
 #define clean_errno() (errno == 0 ? "None" : strerror(errno))
 
 #define lwlog_emerg(M, ...)                                                    \
-  do {                                                                         \
-    e_fprintf(2,                                                               \
-              RED "[EMERG]   "                                                 \
-                  "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,             \
-              __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno());     \
-  } while (0)
+    do {                                                                       \
+        e_fprintf(2,                                                           \
+                  RED "[EMERG]   "                                             \
+                      "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,         \
+                  __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno()); \
+    } while (0)
 #define lwlog_alert(M, ...)                                                    \
-  do {                                                                         \
-    e_fprintf(2,                                                               \
-              PURPLE "[ALERT]   "                                              \
-                     "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,          \
-              __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno());     \
-  } while (0)
+    do {                                                                       \
+        e_fprintf(2,                                                           \
+                  PURPLE "[ALERT]   "                                          \
+                         "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,      \
+                  __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno()); \
+    } while (0)
 #define lwlog_crit(M, ...)                                                     \
-  do {                                                                         \
-    e_fprintf(2,                                                               \
-              YELLOW "[CRIT]    "                                              \
-                     "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,          \
-              __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno());     \
-  } while (0)
+    do {                                                                       \
+        e_fprintf(2,                                                           \
+                  YELLOW "[CRIT]    "                                          \
+                         "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,      \
+                  __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno()); \
+    } while (0)
 #define lwlog_err(M, ...)                                                      \
-  do {                                                                         \
-    e_fprintf(2,                                                               \
-              BROWN "[ERR]     "                                               \
-                    "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,           \
-              __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno());     \
-  } while (0)
+    do {                                                                       \
+        e_fprintf(2,                                                           \
+                  BROWN "[ERR]     "                                           \
+                        "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,       \
+                  __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno()); \
+    } while (0)
 #define lwlog_warning(M, ...)                                                  \
-  do {                                                                         \
-    e_fprintf(2,                                                               \
-              BLUE "[WARNING] "                                                \
-                   "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,            \
-              __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno());     \
-  } while (0)
+    do {                                                                       \
+        e_fprintf(2,                                                           \
+                  BLUE "[WARNING] "                                            \
+                       "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,        \
+                  __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno()); \
+    } while (0)
 #define lwlog_notice(M, ...)                                                   \
-  do {                                                                         \
-    e_fprintf(2,                                                               \
-              CYAN "[NOTICE]  "                                                \
-                   "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,            \
-              __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno());     \
-  } while (0)
+    do {                                                                       \
+        e_fprintf(2,                                                           \
+                  CYAN "[NOTICE]  "                                            \
+                       "%s (%s:%d) " NONE M YELLOW " errno: %s\n" NONE,        \
+                  __func__, __FILE__, __LINE__, ##__VA_ARGS__, clean_errno()); \
+    } while (0)
 #define lwlog_info(M, ...)                                                     \
-  do {                                                                         \
-    e_fprintf(2,                                                               \
-              GREEN "[INFO]    "                                               \
-                    "%s (%s:%d) " NONE M "\n",                                 \
-              __func__, __FILE__, __LINE__, ##__VA_ARGS__);                    \
-  } while (0)
+    do {                                                                       \
+        e_fprintf(2,                                                           \
+                  GREEN "[INFO]    "                                           \
+                        "%s (%s:%d) " NONE M "\n",                             \
+                  __func__, __FILE__, __LINE__, ##__VA_ARGS__);                \
+    } while (0)
 #define lwlog_debug(M, ...)                                                    \
-  do {                                                                         \
-    e_fprintf(2,                                                               \
-              GRAY "[DEBUG]   "                                                \
-                   "%s (%s:%d) " NONE M "\n",                                  \
-              __func__, __FILE__, __LINE__, ##__VA_ARGS__);                    \
-  } while (0)
+    do {                                                                       \
+        e_fprintf(2,                                                           \
+                  GRAY "[DEBUG]   "                                            \
+                       "%s (%s:%d) " NONE M "\n",                              \
+                  __func__, __FILE__, __LINE__, ##__VA_ARGS__);                \
+    } while (0)
 
 /* LOG_LEVEL controls */
 #if LOG_LEVEL < DEBUG
 #undef lwlog_debug
 #define lwlog_debug(M, ...)                                                    \
-  do {                                                                         \
-  } while (0)
+    do {                                                                       \
+    } while (0)
 #endif
 
 #if LOG_LEVEL < INFO
 #undef lwlog_info
 #define lwlog_info(M, ...)                                                     \
-  do {                                                                         \
-  } while (0)
+    do {                                                                       \
+    } while (0)
 #endif
 
 #if LOG_LEVEL < NOTICE
 #undef lwlog_notice
 #define lwlog_notice(M, ...)                                                   \
-  do {                                                                         \
-  } while (0)
+    do {                                                                       \
+    } while (0)
 #endif
 
 #if LOG_LEVEL < WARNING
 #undef lwlog_warning
 #define lwlog_warning(M, ...)                                                  \
-  do {                                                                         \
-  } while (0)
+    do {                                                                       \
+    } while (0)
 #endif
 
 #if LOG_LEVEL < ERR
 #undef lwlog_err
 #define lwlog_err(M, ...)                                                      \
-  do {                                                                         \
-  } while (0)
+    do {                                                                       \
+    } while (0)
 #endif
 
 #if LOG_LEVEL < CRIT
 #undef lwlog_crit
 #define lwlog_crit(M, ...)                                                     \
-  do {                                                                         \
-  } while (0)
+    do {                                                                       \
+    } while (0)
 #endif
 
 #if LOG_LEVEL < ALERT
 #undef lwlog_alert
 #define lwlog_alert(M, ...)                                                    \
-  do {                                                                         \
-  } while (0)
+    do {                                                                       \
+    } while (0)
 #endif
 
 #if LOG_LEVEL < EMERG
 #undef lwlog_emerg
 #define lwlog_emerg(M, ...)                                                    \
-  do {                                                                         \
-  } while (0)
+    do {                                                                       \
+    } while (0)
 #endif
 
 /* LOG_COLOR controls */

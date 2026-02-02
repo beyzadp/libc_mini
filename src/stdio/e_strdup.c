@@ -13,23 +13,23 @@ available, NULL is returned and errno is set to ENOMEM.*/
 
 char *e_strdup(const char *s1) {
 
-  char *dest;
-  dest = (char *)e_malloc(e_strlen(s1) + 1);
-  if (!dest) {
-    return NULL;
-  }
-  int n = 0;
-  char *tempdest;
-  tempdest = dest;
+    char *dest;
+    dest = (char *)e_malloc(e_strlen(s1) + 1);
+    if (!dest) {
+        return NULL;
+    }
+    int n = 0;
+    char *tempdest;
+    tempdest = dest;
 
-  int len = e_strlen(s1);
+    int len = e_strlen(s1);
 
-  while (n <= len) {
-    *tempdest = *(s1 + n);
-    tempdest++;
-    n++;
-  }
-  dest[n] = '\0';
+    while (n <= len) {
+        *tempdest = *(s1 + n);
+        tempdest++;
+        n++;
+    }
+    dest[n] = '\0';
 
-  return dest;
+    return dest;
 }

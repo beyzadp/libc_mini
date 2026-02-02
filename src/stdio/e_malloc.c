@@ -10,56 +10,56 @@
 #define ALIGN8(x) ((((x) + 7) / 8) * 8)
 
 typedef struct Block {
-  size_t size;
-  int is_free; // 1 if the block is free, 0 if it is allocated
-  struct Block
-      *next; // Pointer to the next block in the free list (NULL if end)
+    size_t size;
+    int is_free; // 1 if the block is free, 0 if it is allocated
+    struct Block
+        *next; // Pointer to the next block in the free list (NULL if end)
 } __attribute__((aligned(8))) Block;
 static Block *free_list = NULL;
 
 void *e_malloc(size_t size) {
-  size = ALIGN8(size);
+    size = ALIGN8(size);
 
-  Block *last = NULL;
-  Block *curr = free_list;
+    Block *last = NULL;
+    Block *curr = free_list;
 
-  // size align
+    // size align
 
-  // search for a free block
+    // search for a free block
 
-  while (curr != NULL) {
+    while (curr != NULL) {
 
-    if (curr->is_free == 1 && curr->size >= size) {
-      curr->is_free = 0;
+        if (curr->is_free == 1 && curr->size >= size) {
+            curr->is_free = 0;
 
-      return (void *)(curr + 1);
+            return (void *)(curr + 1);
+        }
+
+        last = curr;
+        curr = curr->next;
     }
 
-    last = curr;
-    curr = curr->next;
-  }
+    // if not found, use sbrk and get some memory blocks
+    void *raw_mem = sbrk(sizeof(Block) + size);
 
-  // if not found, use sbrk and get some memory blocks
-  void *raw_mem = sbrk(sizeof(Block) + size);
+    if (raw_mem == (void *)-1) { // failed
+        return NULL;
+    }
 
-  if (raw_mem == (void *)-1) { // failed
-    return NULL;
-  }
+    Block *header = (Block *)raw_mem;
 
-  Block *header = (Block *)raw_mem;
+    header->size = size;
+    header->is_free = 0;
+    header->next = NULL;
 
-  header->size = size;
-  header->is_free = 0;
-  header->next = NULL;
+    if (free_list == NULL) {
+        free_list = header;
 
-  if (free_list == NULL) {
-    free_list = header;
+    } else if (last) {
+        last->next = header;
+    }
 
-  } else if (last) {
-    last->next = header;
-  }
+    return (void *)(header + 1);
 
-  return (void *)(header + 1);
-
-  // return a pointer to the memory
+    // return a pointer to the memory
 }

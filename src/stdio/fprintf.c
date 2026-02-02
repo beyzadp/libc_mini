@@ -20,80 +20,80 @@ until the string is finished (aka, until you find a null character (\0)).
 */
 
 int e_fprintf(int fd, const char *format, ...) {
-  va_list ap;
-  va_start(ap, format);
-  int return_len = 0;
-  while (*format) {
-    if (*format == '%') {
-      format++;
-      if (*format == 'd') {
-        int i = va_arg(ap, int);
-        char *str = e_itoa(i);         // Convert int i to string, base 10
-        write(fd, str, e_strlen(str)); // Write the string to output      }
-        return_len += e_strlen(str);
-      } else if (*format == 's') {
-        const char *s = va_arg(ap, const char *);
-        while (*s) {
-          write(fd, s, 1);
-          return_len += 1;
-          s++;
-        }
-      } else if (*format == 'c') {
-        int character = va_arg(ap, int);
-        char ch = (char)character;
-        write(fd, &ch, 1);
-        return_len += 1;
-      } else if (*format == '%') {
-        write(fd, "%", 1);
-        return_len += 1;
-      } else if (*format == 'x' || *format == 'X') {
-        const int value = va_arg(ap, int);
-        for (int i = 7; i >= 0; i--) {
-          const int nibble = (value >> (i * 4)) & 0xf;
-          write(fd, &"0123456789abcdef"[nibble], 1);
-          return_len += 1;
-        }
-      } else if (*format == 'p') {
-        void *ptr = va_arg(ap, void *);
-        unsigned long val = (unsigned long)ptr;
+    va_list ap;
+    va_start(ap, format);
+    int return_len = 0;
+    while (*format) {
+        if (*format == '%') {
+            format++;
+            if (*format == 'd') {
+                int i = va_arg(ap, int);
+                char *str = e_itoa(i); // Convert int i to string, base 10
+                write(fd, str, e_strlen(str)); // Write the string to output }
+                return_len += e_strlen(str);
+            } else if (*format == 's') {
+                const char *s = va_arg(ap, const char *);
+                while (*s) {
+                    write(fd, s, 1);
+                    return_len += 1;
+                    s++;
+                }
+            } else if (*format == 'c') {
+                int character = va_arg(ap, int);
+                char ch = (char)character;
+                write(fd, &ch, 1);
+                return_len += 1;
+            } else if (*format == '%') {
+                write(fd, "%", 1);
+                return_len += 1;
+            } else if (*format == 'x' || *format == 'X') {
+                const int value = va_arg(ap, int);
+                for (int i = 7; i >= 0; i--) {
+                    const int nibble = (value >> (i * 4)) & 0xf;
+                    write(fd, &"0123456789abcdef"[nibble], 1);
+                    return_len += 1;
+                }
+            } else if (*format == 'p') {
+                void *ptr = va_arg(ap, void *);
+                unsigned long val = (unsigned long)ptr;
 
-        write(fd, "0x", 2);
+                write(fd, "0x", 2);
 
-        // Print each hex digit by shifting and masking
-        int started = 0;
-        for (int i = (sizeof(unsigned long) * 2) - 1; i >= 0; i--) {
-          char digit = (val >> (i * 4)) & 0xf;
-          if (digit || started || i == 0) {
-            char c = "0123456789abcdef"[(int)digit];
-            write(fd, &c, 1);
+                // Print each hex digit by shifting and masking
+                int started = 0;
+                for (int i = (sizeof(unsigned long) * 2) - 1; i >= 0; i--) {
+                    char digit = (val >> (i * 4)) & 0xf;
+                    if (digit || started || i == 0) {
+                        char c = "0123456789abcdef"[(int)digit];
+                        write(fd, &c, 1);
+                        return_len += 1;
+
+                        started = 1;
+                    }
+                }
+            } else if (*format == 'l' && *(format + 1) == 'l' &&
+                       *(format + 2) == 'u') {
+                unsigned long long ull = va_arg(ap, unsigned long long);
+                char *str = e_ulltoa(ull);
+                write(fd, str, e_strlen(str));
+                return_len += e_strlen(str);
+                format += 2;
+            }
+
+            else {
+                char symbol = '%';
+                write(fd, &symbol, 1);
+                return_len += 1;
+                write(fd, format, 1);
+                return_len += 1;
+            }
+
+            // add %u
+        } else {
+            write(fd, format, 1);
             return_len += 1;
-
-            started = 1;
-          }
         }
-      } else if (*format == 'l' && *(format + 1) == 'l' &&
-                 *(format + 2) == 'u') {
-        unsigned long long ull = va_arg(ap, unsigned long long);
-        char *str = e_ulltoa(ull);
-        write(fd, str, e_strlen(str));
-        return_len += e_strlen(str);
-        format += 2;
-      }
-
-      else {
-        char symbol = '%';
-        write(fd, &symbol, 1);
-        return_len += 1;
-        write(fd, format, 1);
-        return_len += 1;
-      }
-
-      // add %u
-    } else {
-      write(fd, format, 1);
-      return_len += 1;
+        format++;
     }
-    format++;
-  }
-  return return_len;
+    return return_len;
 }

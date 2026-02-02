@@ -26,8 +26,8 @@ return 0.
     */
 
 int e_isalpha(int c) {
-  if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) {
-    return 1; // non-zero
-  }
-  return 0;
+    if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) {
+        return 1; // non-zero
+    }
+    return 0;
 }

@@ -10,5 +10,5 @@
 // arg3: The number of bytes to be read from the file.
 
 ssize_t read(int fd, void *buf, size_t count) {
-  return (ssize_t)syscall3(SYS_READ, fd, (long)buf, count);
+    return (ssize_t)syscall3(SYS_READ, fd, (long)buf, count);
 }

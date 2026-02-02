@@ -30,16 +30,16 @@ located character, or NULL if the character does not appear in the string.
 */
 
 char *e_strrchr(const char *s, int c) {
-  char ch = (char)c;
-  size_t s_len = e_strlen(s);
-  while (s_len + 1) {
-    if (*(s + s_len) == ch) {
-      return (char *)(s + s_len);
+    char ch = (char)c;
+    size_t s_len = e_strlen(s);
+    while (s_len + 1) {
+        if (*(s + s_len) == ch) {
+            return (char *)(s + s_len);
+        }
+        s_len--;
     }
-    s_len--;
-  }
-  if (ch == '\0')
-    return (char *)s;
+    if (ch == '\0')
+        return (char *)s;
 
-  return NULL;
+    return NULL;
 }

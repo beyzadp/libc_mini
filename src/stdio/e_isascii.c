@@ -15,8 +15,8 @@
 // check is it between 0 and decimal 127
 
 int e_isascii(int c) {
-  if (c >= 0 && c <= 127) {
-    return 1;
-  }
-  return 0;
+    if (c >= 0 && c <= 127) {
+        return 1;
+    }
+    return 0;
 }

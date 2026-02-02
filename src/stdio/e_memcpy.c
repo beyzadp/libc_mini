@@ -12,14 +12,14 @@
 //  indicate an error.
 
 void *e_memcpy(void *restrict s1, const void *restrict s2, size_t n) {
-  char *temps1 = (char *)s1;
-  char *temps2 = (char *)s2;
-  while (n) {
+    char *temps1 = (char *)s1;
+    char *temps2 = (char *)s2;
+    while (n) {
 
-    *temps1 = *temps2;
-    temps1++;
-    temps2++;
-    n--;
-  }
-  return s1;
+        *temps1 = *temps2;
+        temps1++;
+        temps2++;
+        n--;
+    }
+    return s1;
 }

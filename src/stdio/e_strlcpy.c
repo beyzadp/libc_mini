@@ -22,13 +22,13 @@ this.
     */
 
 size_t e_strlcpy(char *dst, const char *src, size_t size) {
-  size_t src_len = e_strlen(src);
+    size_t src_len = e_strlen(src);
 
-  if (size) {
-    size_t to_copy = (src_len >= size) ? size - 1 : src_len;
-    e_memcpy(dst, src, to_copy);
-    dst[to_copy] = '\0';
-  }
+    if (size) {
+        size_t to_copy = (src_len >= size) ? size - 1 : src_len;
+        e_memcpy(dst, src, to_copy);
+        dst[to_copy] = '\0';
+    }
 
-  return src_len;
+    return src_len;
 }
