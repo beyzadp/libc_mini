@@ -49,6 +49,23 @@ static inline long syscall3(long number, long arg1, long arg2, long arg3) {
     return ret;
 }
 
+static inline long syscall4(long number, long arg1, long arg2, long arg3,
+                            long arg4) {
+    long ret;
+    __asm__ volatile("mov %[num], %%rax\n\t"
+                     "mov %[a1], %%rdi\n\t"
+                     "mov %[a2], %%rsi\n\t"
+                     "mov %[a3], %%rdx\n\t"
+                     "mov %[a4], %%r10\n\t"
+                     "syscall"
+                     : "=a"(ret)
+                     : [num] "r"(number), [a1] "r"(arg1), [a2] "r"(arg2),
+                       [a3] "r"(arg3), [a4] "r"(arg4)
+                     : "rcx", "r11", "rdi", "rsi", "rdx", "r10");
+
+    return ret;
+}
+
 static inline long syscall5(long number, long arg1, long arg2, long arg3,
                             long arg4, long arg5) {
     long ret;

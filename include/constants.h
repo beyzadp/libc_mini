@@ -10,12 +10,18 @@
 #define SYS_OPEN 2
 #define SYS_CLOSE 3
 #define SYS_BRK 12
+#define SYS_ACCESS 21
+#define SYS_PIPE 22
+#define SYS_DUP2 33
 #define SYS_SOCKET 41
 #define SYS_ACCEPT 43
 #define SYS_BIND 49
 #define SYS_LISTEN 50
 #define SYS_FORK 57
+#define SYS_EXECVE 59
 #define SYS_EXIT 60
+#define SYS_WAIT4 61
+#define SYS_UNLINK 87
 #define SYS_SETSOCKOPT 54
 #define SYS_NANOSLEEP 35
 

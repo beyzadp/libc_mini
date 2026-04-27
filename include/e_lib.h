@@ -19,7 +19,14 @@ typedef __builtin_va_list va_list;
 ssize_t write(int fd, const void *buf, size_t count);
 ssize_t read(int fd, void *buf, size_t count);
 int open(const char *path, int oflag, int mode);
+int access(const char *pathname, int mode);
+int unlink(const char *pathname);
 int close(int fd);
+int dup2(int oldfd, int newfd);
+int pipe(int pipefd[2]);
+int execve(const char *filename, char *const argv[], char *const envp[]);
+pid_t wait(int *wstatus);
+pid_t waitpid(pid_t pid, int *wstatus, int options);
 int socket(int domain, int type, int protocol);
 int accept(int socket, struct sockaddr *restrict address,
            socklen_t *restrict address_len);
