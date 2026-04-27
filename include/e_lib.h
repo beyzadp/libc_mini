@@ -48,6 +48,7 @@ int e_strncmp(const char *s1, const char *s2, size_t n);
 int e_strlcat(char *dst, const char *src, size_t dstsize);
 char *e_strrchr(const char *s, int c);
 char *e_strdup(const char *s1);
+char *e_strndup(const char *s, size_t n);
 int e_atoi(const char *nptr);
 char *e_itoa(int n);
 int e_tolower(int c);
@@ -67,7 +68,9 @@ char *e_strestr(const char *haystack, const char *needle, size_t length);
 
 int e_printf(const char *format, ...);
 int e_fprintf(int fd, const char *format, ...);
-
+char *e_get_next_line(
+    int fd); // Returns a newly allocated string containing the next line read
+             // from the file descriptor 'fd', or NULL on EOF or error.
 void *e_malloc(size_t size);
 void e_free(void *ptr);
 #endif
