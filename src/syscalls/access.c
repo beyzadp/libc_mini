@@ -1,7 +1,6 @@
 // access syscall
 
 #include "constants.h"
-#include "e_lib.h"
 #include "syscall.h"
 
 int access(const char *pathname, int mode) {

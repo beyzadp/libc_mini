@@ -47,4 +47,14 @@
 #define S_IWOTH 0002 // others write
 #define S_IXOTH 0001 // others execute
 
+// access return values
+#define F_OK 0 // file exists
+#define X_OK 1 // file is executable
+#define W_OK 2 // file is writable
+#define R_OK 4 // file is readable
+
+#define STDIN_FILENO 0
+#define STDOUT_FILENO 1
+#define STDERR_FILENO 2
+
 #endif
